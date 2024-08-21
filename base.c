@@ -21,7 +21,7 @@ int main(){
     printf("Seu chute foi %d.\n", chute);
     
     if(secreto == chute){
-        printf("Parabens, Voc� acertou!");
+        printf("Parabens, Você acertou!");
     }
     else {
 
