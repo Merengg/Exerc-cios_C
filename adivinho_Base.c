@@ -2,52 +2,56 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#define NUMERO_DE_TENTATIVAS 6 // basicamente uma constante;
-
-//Função Principal:
-int main(){
-
+// Função Principal:
+int main() {
     setlocale(LC_ALL,"Portuguese_Brazil");
+     #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
 
     printf("***********************\n");
-    printf("//JOGO DE ADIVINHAÇÃO//\n");
+    printf("// JOGO DE ADIVINHAÇÃO //\n");
     printf("***********************\n");
     
     int secreto = 52;
-
     int chute;
+    int tentativas = 1;
 
-    printf("Bem Vindo ao jogo onde seu objetivo seré acertar o número secreto!\n");
+    printf("Bem-vindo ao jogo onde seu objetivo é acertar o número secreto!\n");
 
-    for(int i = 1; i <= NUMERO_DE_TENTATIVAS; i++) {//Necessito estudar mais sobre esses lops. aplicado mas não entendido.
-        
-        printf("Tentativas %d de %d.\n", i, NUMERO_DE_TENTATIVAS);
-        printf("Qual é seu Chute?: ");
-        scanf("%d" , &chute);//Colocar o "&" antes da variavel é importante.
+    while(1) {
+        printf("Tentativa %d.\n", tentativas);
+        printf("Qual é o seu chute? ");
+        scanf("%d", &chute);
         printf("Seu chute foi %d.\n", chute);
+
+        if(chute < 0) {
+            printf("Você não pode chutar números negativos.\n");
+            continue; // Volta ao início do loop
+        }
         
         int acerto = (chute == secreto);
-        int chutemenor = chute < secreto;
+        int chutemenor = (chute < secreto);
 
-        if(acerto){
-            printf("Parabens, Você acertou!\n");
+        if(acerto) {
+            printf("Parabéns, você acertou!\n");
             break;
-        }
-       
-           else if(chutemenor){
-                printf("O número é maior.\n");
-            }
-
-          else{
-                printf("O núumero é menor.\n");
-            }
-
+        } else if(chutemenor) {
+            printf("O número é maior.\n");
             printf("Você errou, tente novamente!\n");
+        } else {
+            printf("O número é menor.\n");
+            printf("Você errou, tente novamente!\n");
+        }
 
-        } 
+        
+        tentativas++;
+    }
 
-    printf("Fim de Jogo.");
+    printf("Fim de jogo.\n");
+    printf("Você acertou em %d tentativas.", tentativas);
 
     return 0;
-
 }
