@@ -17,7 +17,7 @@ int main(){
 
     printf("Bem Vindo ao jogo onde seu objetivo seré acertar o número secreto!\n");
     printf("Qual é seu Chute?: ");
-    scanf("%d" , &chute);//Colocar o "&" antes da variavel � importante.
+    scanf("%d" , &chute);//Colocar o "&" antes da variavel é importante.
     printf("Seu chute foi %d.\n", chute);
     
     if(secreto == chute){
