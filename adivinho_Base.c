@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
+#include <time.h>
 
 // Função Principal:
 int main() {
@@ -12,13 +13,18 @@ int main() {
     #endif
 
     printf("***********************\n");
-    printf("// JOGO DE ADIVINHAÇÃO //\n");
+    printf("|| JOGO DE ADIVINHAÇÃO ||\n");
     printf("***********************\n");
+
+    int segundos = time(0);
+    srand(segundos);
+
+    int numerogrande = rand();
     
-    int secreto = 52;
+    int secreto = numerogrande % 100;
     int chute;
     int tentativas = 1;
-    int pontos = 1000;
+    double pontos = 1000;
 
     printf("Bem-vindo ao jogo onde seu objetivo é acertar o número secreto!\n");
 
@@ -49,13 +55,13 @@ int main() {
 
         
         tentativas++;
-        int pontosperdidos = (chute - secreto) / 2;
+        double pontosperdidos = abs(chute - secreto) / (double)2;
         pontos = pontos - pontosperdidos;
-    }
+    }   
 
     printf("Fim de jogo.\n");
     printf("Você acertou em %d tentativas.\n", tentativas);
-    printf("Total de pontos: %d.", pontos);
+    printf("Total de pontos: %.1f.", pontos);
 
     return 0;
 }
